@@ -23,7 +23,7 @@ var client = new EosClient("http://api.eosnewyork.io");
 ```
 
 Interaction with the blockchain:
-```
+``` csharp
 // Get status of the blockchain
 var chainInfo = await client.GetInfoAsync();
 
