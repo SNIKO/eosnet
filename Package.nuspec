@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>eosnet</id>
+    <version>1.0.0</version>
+    <authors>Sergii Vashchyshchuk</authors>
+    <owners>Sergii Vashchyshchuk</owners>
+    <licenseUrl>https://raw.githubusercontent.com/SNIKO/eosnet/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SNIKO/eosnet</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/SNIKO/eosnet/master/Icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .net standard implementation of the client for EOS blockchain (https://eos.io/).</description>
+    <releaseNotes>Implementation of the Chain API.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>eos, eosio, blockchain</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="11.0.2" />
+    </dependencies>    
+  </metadata>
+  <files>
+      <file src="bin\netstandard2.0\EOS.Client.dll" target="lib\netstandard2.0\EOS.Client.dll"></file>
+  </files>
+</package>
