@@ -101,9 +101,9 @@ namespace EOS.Client
             });
         }
 
-        public Task<IEnumerable<string>> GetRequiredKeysAsync(Transaction transaction, IEnumerable<string> availableKeys)
+        public Task<GetRequiredKeysResult> GetRequiredKeysAsync(Transaction transaction, IEnumerable<string> availableKeys)
         {
-            return client.PostAsync<IEnumerable<string>>("/v1/chain/get_required_keys", new Dictionary<string, object>
+            return client.PostAsync<GetRequiredKeysResult>("/v1/chain/get_required_keys", new Dictionary<string, object>
             {
                 {"transaction", transaction},
                 {"available_keys", availableKeys}
