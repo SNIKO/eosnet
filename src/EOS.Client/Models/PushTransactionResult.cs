@@ -8,6 +8,6 @@ namespace EOS.Client.Models
         public string TransactionId { get; set; }
 
         [JsonProperty("processed")]
-        public byte[] Processed { get; set; }
+        public object Processed { get; set; }
     }
 }
