@@ -37,6 +37,7 @@ namespace EOS.Client.Models
     public class Transaction
     {
         [JsonProperty("expiration")]
+        [JsonConverter(typeof(EosDateTimeConverter))]
         public DateTime Expiration { get; set; }
 
         [JsonProperty("ref_block_num")]

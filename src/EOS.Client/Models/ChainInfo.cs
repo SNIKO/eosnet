@@ -8,6 +8,9 @@ namespace EOS.Client.Models
         [JsonProperty("server_version")]
         public string ServerVersion { get; set; }
 
+        [JsonProperty("chain_id")]
+        public string ChainId { get; set; }
+        
         [JsonProperty("head_block_num")]
         public uint HeadBlockNum { get; set; }
 
@@ -21,6 +24,7 @@ namespace EOS.Client.Models
         public string HeadBlockId { get; set; }
 
         [JsonProperty("head_block_time")]
+        [JsonConverter(typeof(EosDateTimeConverter))]
         public DateTime HeadBlockTime { get; set; }
 
         [JsonProperty("head_block_producer")]

@@ -7,6 +7,7 @@ namespace EOS.Client.Models
     public class Block
     {
         [JsonProperty("timestamp")]
+        [JsonConverter(typeof(EosDateTimeConverter))]
         public DateTime TimeStamp { get; set; }
 
         [JsonProperty("producer")]
