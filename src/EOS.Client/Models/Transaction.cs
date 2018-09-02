@@ -71,7 +71,7 @@ namespace EOS.Client.Models
         public IEnumerable<Authorization> Authorization { get; set; }
 
         [JsonProperty("data")]
-        public object Data { get; set; }
+        public IDictionary<string, object> Data { get; set; }
 
         [JsonProperty("hex_data")]
         public string HexData { get; set; }

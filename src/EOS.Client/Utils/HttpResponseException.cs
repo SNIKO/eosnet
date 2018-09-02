@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EOS.Client
+namespace EOS.Client.Utils
 {
     public class HttpResponseException : Exception
     {

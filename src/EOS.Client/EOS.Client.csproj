@@ -9,6 +9,7 @@
     <OutputPath>..\..\bin</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Cryptography.ECDSA.Secp256K1" Version="1.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 </Project>

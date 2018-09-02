@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace EOS.Client
+namespace EOS.Client.Utils
 {
-    public static class HttpClientExtensions
+    static class HttpClientExtensions
     {
         public static Task<T> GetAsync<T>(this HttpClient client, string uri)
         {
