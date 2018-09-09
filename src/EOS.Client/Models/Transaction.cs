@@ -15,8 +15,14 @@ namespace EOS.Client.Models
         [JsonProperty("net_usage_words")]
         public ulong NetUsageWords { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the transaction.
+        ///
+        ///     The value is either a <see cref="SignedTransaction"/> instance or a string representing transaction id. 
+        /// </summary>
         [JsonProperty("trx")]
-        public SignedTransaction Trx { get; set; }
+        [JsonConverter(typeof(TransactionConverter))]
+        public object Trx { get; set; }
     }
 
     public class SignedTransaction
@@ -32,7 +38,7 @@ namespace EOS.Client.Models
 
         [JsonProperty("packed_trx")]
         public string PackedTransaction { get; set; }
-        
+
         [JsonProperty("transaction")]
         public Transaction Transaction { get; set; }
     }
