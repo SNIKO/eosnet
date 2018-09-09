@@ -51,8 +51,8 @@ namespace EOS.Client
                 GetChecksum(signature)                
             };
 
-            var finalSingature = $"SIG_K1_{signatureWithChecksum.Flattern().ToBase58()}";
-            return finalSingature;
+            var finalSignature = $"SIG_K1_{signatureWithChecksum.Flattern().ToBase58()}";
+            return finalSignature;
         }
         
         static byte[] GetChecksum(byte[] signature)
