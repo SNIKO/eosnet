@@ -8,6 +8,9 @@ namespace EOS.Client.Models
         [JsonProperty("server_version")]
         public string ServerVersion { get; set; }
 
+        [JsonProperty("server_version_string")]
+        public string ServerVersionString { get; set; }
+        
         [JsonProperty("chain_id")]
         public string ChainId { get; set; }
         
