@@ -19,7 +19,7 @@ namespace EOS.Client
         {
             this.Api = new EosApi(nodeUri);
             this.signatureProvider = signatureProvider;
-            this.serializationProvider = new EosBinarySerializer(this.Api);
+            this.serializer = new EosBinarySerializer(this.Api);
         }
         
         public IEosApi Api { get; }
@@ -27,25 +27,33 @@ namespace EOS.Client
         public async Task<string> PushActionsAsync(IEnumerable<Action> actions)
         {
             var chainInfo = await Api.GetInfoAsync();
-            var headBlockInfo = await Api.GetBlockAsync(chainInfo.HeadBlockId);
+            var blockInfo = await Api.GetBlockAsync(chainInfo.LastIrreversibleBlockId);
+
             var transaction = new Transaction
             {
-                RefBlockNum = chainInfo.HeadBlockNum,
-                RefBlockPrefix = headBlockInfo.RefBlockPrefix,
+                RefBlockNum = chainInfo.LastIrreversibleBlockNum,
+                RefBlockPrefix = blockInfo.RefBlockPrefix,
                 Expiration = chainInfo.HeadBlockTime.AddSeconds(30),
                 Actions = actions
             };
 
-            return await PushTransactionAsync(transaction);
+            return await PushTransactionAsync(transaction, chainInfo.ChainId);
+        }
+
+        public async Task<string> PushTransactionAsync(Transaction transaction)
+        {            
+            cachedChainInfo = cachedChainInfo ?? await Api.GetInfoAsync();
+
+            return await PushTransactionAsync(transaction, cachedChainInfo.ChainId);
         }
         
-        public async Task<string> PushTransactionAsync(Transaction transaction)
+        async Task<string> PushTransactionAsync(Transaction transaction, string chainId)
         {
-            var packedTransaction = await serializationProvider.SerializeAsync(transaction);
-            var chainInfo = await Api.GetInfoAsync();
+            var packedTransaction = await serializer.SerializeAsync(transaction);
+
             var signDigest = new[]
             {
-                Hex.Decode(chainInfo.ChainId),
+                Hex.Decode(chainId),
                 packedTransaction,
                 new byte[32]
             };
@@ -63,6 +71,7 @@ namespace EOS.Client
         }
 
         private readonly ISignatureProvider signatureProvider;
-        private readonly EosBinarySerializer serializationProvider;
+        private readonly EosBinarySerializer serializer;
+        ChainInfo cachedChainInfo;
     }
 }
