@@ -16,7 +16,8 @@ namespace EOS.Client.Models
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var utcDate = $"{reader.Value}Z";
+            string timeString = reader.Value.ToString();
+            var utcDate =timeString.EndsWith("M", StringComparison.OrdinalIgnoreCase)? timeString: $"{reader.Value}Z";
             return DateTime.Parse(utcDate);
         }
     }
